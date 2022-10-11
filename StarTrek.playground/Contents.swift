@@ -1,6 +1,5 @@
 /*:
  # Fun with functional programming and structs
-
  *A recap from the lecture slides:*
  
  **map()**
@@ -38,22 +37,22 @@ var femaleOfficers: [String] = ["kira", "dax", "tpol", "janeway", "troi", "seven
 First, a set of warm-up problems for everyone
 */
 // Q0: How many human officers are there?
-
-
+var humanOfficersCount = humanOfficers.count
 
 
 // Q1: What percentage of humans are female?
-
-
+var femaleCount = humanOfficers.filter{ femaleOfficers.contains($0)}.count
+var femalePercent = Double(femaleCount) / Double(humanOfficersCount)
+print(femalePercent)
 
 
 // Q2: How many first officers are human?
-
-
+var human = (firstOfficers.filter { humanOfficers.contains($0.key) }).count
+print(human)
 
 
 // Q3: Get a list of females sorted by name
-
+femaleOfficers.sorted()
 
 
 
@@ -63,7 +62,7 @@ First, a set of warm-up problems for everyone
 struct Officer: Comparable {
   var name: String
   var ship: String
-  
+
   init(name: String, ship: String){
     self.name = name
     self.ship = ship
@@ -75,7 +74,7 @@ struct Officer: Comparable {
   static func ==(lhs: Officer, rhs: Officer) -> Bool {
     return lhs.name == rhs.name && lhs.ship == rhs.ship
   }
-  
+
   // To make this struct conform to Comparable protocol
   static func <(lhs: Officer, rhs: Officer) -> Bool {
     return lhs.name < rhs.name
@@ -86,26 +85,24 @@ struct Officer: Comparable {
 Group 1
 */
 // Q4: Create an array of officer objects who captain starships
-
+let allStarshipCaptians = captains.map{ Officer(name: $0, ship: $1)}
+print(allStarshipCaptians.map{$0.name})
 
 
 
 // Q5: Alphabetize the previous list by the captain's name
-
-
-
-
+let captainsAlpha = allStarshipCaptians.sorted()
 /*:
 Group 2
 */
 // Q6: Create an array of officers serving as first officers who are also Vulcan
-
-
-
+let FirstOfficerMap = firstOfficers.map{ Officer(name: $0, ship: $1)}
+print(FirstOfficerMap)
+let vulcanFirstOfficers = FirstOfficerMap.filter{ vulcanOfficers.contains($0.name) }
+print(vulcanFirstOfficers)
 
 
 // Q7: How many these Vulcan first officers have names shorter than 5 characters?
-
-
-
+let vulcanShortNames = vulcanFirstOfficers.filter{ $0.name.count < 5 }.count
+print(vulcanShortNames)
 
