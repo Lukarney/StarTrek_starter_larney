@@ -55,7 +55,6 @@ print(human)
 femaleOfficers.sorted()
 
 
-
 /*:
  Given the following struct and some methods to make these objects comparable, answer the questions in the sets below
  */
@@ -89,7 +88,6 @@ let allStarshipCaptians = captains.map{ Officer(name: $0, ship: $1)}
 print(allStarshipCaptians.map{$0.name})
 
 
-
 // Q5: Alphabetize the previous list by the captain's name
 let captainsAlpha = allStarshipCaptians.sorted()
 /*:
@@ -97,7 +95,6 @@ Group 2
 */
 // Q6: Create an array of officers serving as first officers who are also Vulcan
 let FirstOfficerMap = firstOfficers.map{ Officer(name: $0, ship: $1)}
-print(FirstOfficerMap)
 let vulcanFirstOfficers = FirstOfficerMap.filter{ vulcanOfficers.contains($0.name) }
 print(vulcanFirstOfficers)
 
